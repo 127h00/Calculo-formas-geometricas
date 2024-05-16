@@ -39,7 +39,7 @@ fun Application.configureRouting() {
         val quadradoRepository = SquareRepository()
         get("/quadrado")
         {
-            call.respond(quadradoRepository.getDados)
+            call.respond(quadradoRepository.getDados())
         }
     }
     

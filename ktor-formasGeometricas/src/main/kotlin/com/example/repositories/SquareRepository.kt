@@ -2,6 +2,7 @@ package com.example.repositories
 
 
 import com.example.models.Square
+import kotlinx.serialization.Serializable
 
 @Serializable
 class Square(val largura: Double, val altura: Double)

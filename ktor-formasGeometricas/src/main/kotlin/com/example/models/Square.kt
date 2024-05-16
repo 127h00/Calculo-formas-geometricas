@@ -1,5 +1,7 @@
 package com.example.models
 
+import kotlinx.serialization.Serializable
+
 
 @Serializable
 class Square(val largura: Double, val altura: Double)
