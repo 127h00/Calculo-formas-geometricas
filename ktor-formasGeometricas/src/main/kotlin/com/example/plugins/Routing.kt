@@ -8,6 +8,8 @@ import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import com.example.models.Square
+import com.example.repositories.SquareRepository
 
 fun Application.configureRouting() {
     install(StatusPages) {
@@ -32,4 +34,13 @@ fun Application.configureRouting() {
             call.respondText("task was created", status = HttpStatusCode.Created)
         }
     }
+
+    routing{
+        val quadradoRepository = SquareRepository()
+        get("/quadrado")
+        {
+            call.respond(quadradoRepository.getDados)
+        }
+    }
+    
 }
