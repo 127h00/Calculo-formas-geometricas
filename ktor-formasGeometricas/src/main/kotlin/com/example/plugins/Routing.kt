@@ -37,9 +37,14 @@ fun Application.configureRouting() {
 
     routing{
         val quadradoRepository = SquareRepository()
+        post("/calc")
+        {
+            call.respond(quadradoRepository.getArea(call.receive<Square>()))
+        }
         get("/quadrado")
         {
-            call.respond(quadradoRepository.getDados())
+            val quad = call.receive<Square>()
+            call.respond(quadradoRepository.getDados(quad))
         }
     }
     

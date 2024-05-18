@@ -4,12 +4,18 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-class Square(val largura: Double, val altura: Double)
+class Square{
+    var largura: Double
+    var altura: Double
 
-class SquareRepository{
-    val quadrado: Square = Square(5.0, 5.0) // Substitua 5.0 pelos valores desejados
 
-    fun getArea(): Double {
-        return quadrado.altura * quadrado.largura
+    constructor(larg: Double, alt: Double)
+    {
+        if(larg != alt )
+        {
+            throw IllegalArgumentException("Em um quadrado altura tem que ser igual a largura")
+        }
+        this.largura = larg;
+        this.altura = alt;
     }
 }
