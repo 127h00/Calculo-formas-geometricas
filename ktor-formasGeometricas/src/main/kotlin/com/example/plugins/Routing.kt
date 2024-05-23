@@ -2,6 +2,7 @@ package com.example.plugins
 
 import com.example.models.Cubo
 import com.example.models.Task
+import com.example.models.Cone
 import com.example.repositories.TasksRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -10,6 +11,7 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import com.example.models.Square
+import com.example.repositories.ConeRepository
 import com.example.repositories.CuboRepository
 import com.example.repositories.SquareRepository
 
@@ -70,6 +72,37 @@ fun Application.configureRouting() {
                 call.respond(error("Medidas negativas ou iguais a 0"))
             }
             call.respond(cuboRepository.getPerimetro(cub))
+        }
+    }
+
+    routing {
+        val coneRepository = ConeRepository();
+
+        get("/cone/area"){
+            val cone = call.receive<Cone>()
+            if(cone.altura <=0 || cone.raio <= 0 || cone.geratriz <= 0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(coneRepository.getAreaTotal(cone))
+        }
+
+        get("/cone/circunferencia"){
+            val cone = call.receive<Cone>()
+            if(cone.altura <=0 || cone.raio <= 0 || cone.geratriz <= 0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(coneRepository.getCircunferencia(cone))
+        }
+
+        get("/cone/volume"){
+            val cone = call.receive<Cone>()
+            if(cone.altura <=0 || cone.raio <= 0 || cone.geratriz <= 0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(coneRepository.getVolume(cone))
         }
     }
     
