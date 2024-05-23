@@ -1,5 +1,6 @@
 package com.example.plugins
 
+import com.example.models.Cubo
 import com.example.models.Task
 import com.example.repositories.TasksRepository
 import io.ktor.http.*
@@ -9,6 +10,7 @@ import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import com.example.models.Square
+import com.example.repositories.CuboRepository
 import com.example.repositories.SquareRepository
 
 fun Application.configureRouting() {
@@ -34,17 +36,40 @@ fun Application.configureRouting() {
             call.respondText("task was created", status = HttpStatusCode.Created)
         }
     }
+    routing {
+        val cuboRepository:CuboRepository = CuboRepository()
 
-    routing{
-        val quadradoRepository = SquareRepository()
-        post("/calc")
-        {
-            call.respond(quadradoRepository.getArea(call.receive<Square>()))
+        get("/cubo/qual"){
+            val cub = call.receive<Cubo>()
+            if(cub.lado <=0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(cuboRepository.ola(cub))
         }
-        get("/quadrado")
-        {
-            val quad = call.receive<Square>()
-            call.respond(quadradoRepository.getDados(quad))
+        get("/cubo/areatotal"){
+            val cub = call.receive<Cubo>()
+            if(cub.lado <=0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(cuboRepository.getAreaTotal(cub))
+        }
+        get("/cubo/volume"){
+            val cub = call.receive<Cubo>()
+            if(cub.lado <=0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(cuboRepository.getVolume(cub))
+        }
+        get("/cubo/perimetro"){
+            val cub = call.receive<Cubo>()
+            if(cub.lado <=0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(cuboRepository.getPerimetro(cub))
         }
     }
     
