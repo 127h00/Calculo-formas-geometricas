@@ -1,7 +1,9 @@
 package com.example.plugins
 
+import com.example.models.Cilindro
 import com.example.models.Cubo
 import com.example.models.Task
+import com.example.repositories.CilindroRepository
 import com.example.models.Cone
 import com.example.repositories.TasksRepository
 import io.ktor.http.*
@@ -13,7 +15,6 @@ import io.ktor.server.routing.*
 import com.example.models.Square
 import com.example.repositories.ConeRepository
 import com.example.repositories.CuboRepository
-import com.example.repositories.SquareRepository
 
 fun Application.configureRouting() {
     install(StatusPages) {
@@ -76,6 +77,26 @@ fun Application.configureRouting() {
     }
 
     routing {
+        val cilindroRepository = CilindroRepository()
+        get("/cilindro/qual")
+        {
+            val cili = call.receive<Cilindro>()
+            call.respond(cilindroRepository.ola(cili))
+        }
+        get("/cilindro/area")
+        {
+            val cili = call.receive<Cilindro>()
+            call.respond(cilindroRepository.getAreaTotal(cili))
+        }
+        get("/cilindro/volume")
+        {
+            val cili = call.receive<Cilindro>()
+            call.respond(cilindroRepository.getVolume(cili))
+        }
+        get("/cilindro/perimetro")
+        {
+            val cili = call.receive<Cilindro>()
+            call.respond(cilindroRepository.getPerimetro(cili))
         val coneRepository = ConeRepository();
 
         get("/cone/area"){
