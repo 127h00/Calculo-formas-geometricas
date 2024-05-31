@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cálculo formas geométricas</title>
+    <link rel="stylesheet" type="text/css" href="styleCone.css" /> 
+    <script src="scriptCone.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Cone</h1>
+        <img src="cone.webp" alt="Imagem de um cone" width="200">
+
+        <p>Insira a altura do cone (em cm):</p>
+        <input id="alturaCone" type="number">
+        <p>Insira o raio do cone (em cm):</p>
+        <input id="raioCone" type="number">
+        <p>Insira a geratriz do cone (em cm):</p>
+        <input id="geratrizCone" type="number">
+
+        <br>
+
+        <button type="button" onclick="calcular()">Calcular</button>
+        <p id="result"></p>
+        <p id="error" class="error"></p>
+
+    </div>
+</body>
+</html>

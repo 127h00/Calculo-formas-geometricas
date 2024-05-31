@@ -3,18 +3,20 @@ package com.example.plugins
 import com.example.models.Cilindro
 import com.example.models.Cubo
 import com.example.models.Task
-import com.example.repositories.CilindroRepository
 import com.example.models.Cone
+import com.example.models.Square
+import com.example.models.Paralelepipedo
+import com.example.repositories.CilindroRepository
 import com.example.repositories.TasksRepository
+import com.example.repositories.ConeRepository
+import com.example.repositories.CuboRepository
+import com.example.repositories.ParalelepipedoRepository
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.statuspages.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import com.example.models.Square
-import com.example.repositories.ConeRepository
-import com.example.repositories.CuboRepository
 
 fun Application.configureRouting() {
     install(StatusPages) {

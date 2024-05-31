@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cálculo formas geométricas</title>
+    <link rel="stylesheet" type="text/css" href="styleParalelepipedo.css" /> 
+    <script src=".js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Paralelepípedo</h1>
+        <img src="paralelepipedo.webp" alt="Imagem de um paralelepípedo" width="100">
+
+        <p>Insira a altura do paralelepípedo (em cm):</p>
+        <input id="alturaPrll" type="number">
+        <p>Insira a largura do paralelepípedo (em cm):</p>
+        <input id="larguraPrll" type="number">
+        <p>Insira o comprimento do paralelepípedo (em cm):</p>
+        <input id="comprimentoPrll" type="number">
+
+        <br>
+
+        <button type="button" onclick="calcular()">Calcular</button>
+        <p id="result"></p>
+        <p id="error" class="error"></p>
+
+    </div>
+</body>
+</html>
