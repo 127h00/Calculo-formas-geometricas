@@ -1,6 +1,5 @@
 package com.example.repositories
 import com.example.models.Cone
-import com.example.models.Cubo
 
 class ConeRepository {
 

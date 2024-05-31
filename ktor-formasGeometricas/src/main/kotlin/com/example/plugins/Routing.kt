@@ -22,6 +22,7 @@ fun Application.configureRouting() {
             call.respondText(text = "500: $cause" , status = HttpStatusCode.InternalServerError)
         }
     }
+
     routing {
         val repository = TasksRepository()
 
@@ -39,6 +40,7 @@ fun Application.configureRouting() {
             call.respondText("task was created", status = HttpStatusCode.Created)
         }
     }
+
     routing {
         val cuboRepository:CuboRepository = CuboRepository()
 
@@ -78,6 +80,7 @@ fun Application.configureRouting() {
 
     routing {
         val cilindroRepository = CilindroRepository()
+
         get("/cilindro/qual")
         {
             val cili = call.receive<Cilindro>()
@@ -97,6 +100,10 @@ fun Application.configureRouting() {
         {
             val cili = call.receive<Cilindro>()
             call.respond(cilindroRepository.getPerimetro(cili))
+        }
+    }
+
+    routing{
         val coneRepository = ConeRepository();
 
         get("/cone/area"){
@@ -127,4 +134,34 @@ fun Application.configureRouting() {
         }
     }
     
+    routing{
+        val prllRepository = ParalelepipedoRepository();
+
+        get("/prll/area"){
+            val prll = call.receive<Paralelepipedo>()
+            if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(prllRepository.getAreaTotal(prll))
+        }
+
+        get("/prll/volume"){
+            val prll = call.receive<Paralelepipedo>()
+            if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(prllRepository.getVolume(prll))
+        }
+
+        get("/prll/diagonal"){
+            val prll = call.receive<Paralelepipedo>()
+            if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
+            {
+                call.respond(error("Medidas negativas ou iguais a 0"))
+            }
+            call.respond(prllRepository.getDiagonal(prll))
+        }
+    }
 }
