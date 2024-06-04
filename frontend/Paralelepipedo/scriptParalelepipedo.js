@@ -4,15 +4,15 @@
 
 async function calcular() {
     // Get the input values
-    const altura = document.getElementById("alturaCone").value;
-    const raio = document.getElementById("raioCone").value;
-    const geratriz = document.getElementById("geratrizCone").value;
+    const altura = document.getElementById("alturaPrll").value;
+    const largura = document.getElementById("larguraPrll").value;
+    const comprimento = document.getElementById("comprimentoPrll").value;
 
     // Construct the query parameters
     const queryParams = new URLSearchParams({
         altura: parseFloat(altura),
-        raio: parseFloat(raio),
-        geratriz: parseFloat(geratriz)
+        largura: parseFloat(largura),
+        comprimento: parseFloat(comprimento)
     });
 
     // Clear previous responses
@@ -21,9 +21,9 @@ async function calcular() {
 
     try {
         // Make the GET request
-        const responseArea = await fetch(`/cone/area?${queryParams}`);
-        const responseCircunferencia = await fetch(`/cone/circunferencia?${queryParams}`);
-        const responseVolume = await fetch(`/cone/volume?${queryParams}`);
+        const responseArea = await fetch(`/prll/area?${queryParams}`);
+        const responseVolume = await fetch(`/prll/volume?${queryParams}`);
+        const responseDiagonal = await fetch(`/prll/diagonal?${queryParams}`);
 
         // Check if the response is successful
         if (!response.ok) {
@@ -34,12 +34,12 @@ async function calcular() {
         // Get the JSON response
         const dataArea = await responseArea.json();
         const dataCircunferencia = await responseCircunferencia.json();
-        const dataVolume = await responseVolume.json();
+        const dataDiagonal = await responseDiagonal.json();
 
         // Display the volume in the resposta paragraph
         document.getElementById("resposta").innerText = `Área: ${dataArea} <br>
                                                         Circunferência: ${dataCircunferencia} <br>
-                                                        Volume: ${dataVolume} <br>`;
+                                                        Diagonal: ${dataDiagonal} <br>`;
     } catch (error) {
         // Display the error message in the error paragraph
         document.getElementById("error").innerText = `Erro: ${error.message}`;
