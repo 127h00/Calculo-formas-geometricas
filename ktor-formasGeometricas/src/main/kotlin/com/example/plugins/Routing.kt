@@ -134,6 +134,37 @@ fun Application.configureRouting() {
             }
             call.respond(coneRepository.getVolume(cone))
         }
+
+
+        // get("/cone/volume") {
+        //     // Get query parameters from the request URL
+        //     val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+        //     val raio = call.request.queryParameters["raio"]?.toDoubleOrNull()
+        //     val geratriz = call.request.queryParameters["geratriz"]?.toDoubleOrNull()
+            
+        //     ```
+        //     // Check if any of the parameters are null or invalid
+        //     if (altura == null || raio == null || geratriz == null) {
+        //         // Respond with a 400 Bad Request status and an error message
+        //         call.respond(HttpStatusCode.BadRequest, error("Missing or invalid query parameters"))
+        //         return@get
+        //     }
+            
+        //     // Check if any of the parameters are less than or equal to zero
+        //     if (altura <= 0 || raio <= 0 || geratriz <= 0) {
+        //         // Respond with a 400 Bad Request status and an error message
+        //         call.respond(HttpStatusCode.BadRequest, error("Medidas negativas ou iguais a 0"))
+        //         return@get
+        //     }
+            
+        //     // Create a Cone object with the valid parameters
+        //     val cone = Cone(altura, raio, geratriz)
+        //     // Calculate and respond with the volume of the cone
+        //     call.respond(coneRepository.getVolume(cone))
+            
+        //     ```
+            
+        //     }
     }
     
     routing{
