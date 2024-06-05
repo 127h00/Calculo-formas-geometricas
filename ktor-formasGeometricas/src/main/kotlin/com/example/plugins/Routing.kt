@@ -77,29 +77,59 @@ fun Application.configureRouting() {
             call.respond(cuboRepository.getPerimetro(cubo))
         }
     }
-
     routing {
         val cilindroRepository = CilindroRepository()
 
-        post("/cilindro/qual")
-        {
-            val cili = call.receive<Cilindro>()
-            call.respond(cilindroRepository.ola(cili))
+        get("/cilindro/qual") {
+            val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+            val raio = call.request.queryParameters["raio"]?.toDoubleOrNull()
+
+            if (altura == null || raio == null || altura <= 0 || raio <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
+            }
+
+            val cilindro = Cilindro(altura, raio)
+            call.respond(cilindroRepository.ola(cilindro))
         }
-        post("/cilindro/area")
-        {
-            val cili = call.receive<Cilindro>()
-            call.respond(cilindroRepository.getAreaTotal(cili))
+
+        get("/cilindro/area") {
+            val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+            val raio = call.request.queryParameters["raio"]?.toDoubleOrNull()
+
+            if (altura == null || raio == null || altura <= 0 || raio <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
+            }
+
+            val cilindro = Cilindro(altura, raio)
+            call.respond(cilindroRepository.getAreaTotal(cilindro))
         }
-        post("/cilindro/volume")
-        {
-            val cili = call.receive<Cilindro>()
-            call.respond(cilindroRepository.getVolume(cili))
+
+        get("/cilindro/volume") {
+            val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+            val raio = call.request.queryParameters["raio"]?.toDoubleOrNull()
+
+            if (altura == null || raio == null || altura <= 0 || raio <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
+            }
+
+            val cilindro = Cilindro(altura, raio)
+            call.respond(cilindroRepository.getVolume(cilindro))
         }
-        post("/cilindro/perimetro")
-        {
-            val cili = call.receive<Cilindro>()
-            call.respond(cilindroRepository.getPerimetro(cili))
+
+        get("/cilindro/perimetro") {
+            val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+            val raio = call.request.queryParameters["raio"]?.toDoubleOrNull()
+
+            if (altura == null || raio == null || altura <= 0 || raio <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
+            }
+
+            val cilindro = Cilindro(altura, raio)
+            call.respond(cilindroRepository.getPerimetro(cilindro))
         }
     }
 
@@ -152,7 +182,7 @@ fun Application.configureRouting() {
     routing{
         val prllRepository = ParalelepipedoRepository();
 
-        post("/prll/area"){
+        get("/prll/area"){
             val prll = call.receive<Paralelepipedo>()
             if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
             {
@@ -161,7 +191,7 @@ fun Application.configureRouting() {
             call.respond(prllRepository.getAreaTotal(prll))
         }
 
-        post("/prll/volume"){
+        get("/prll/volume"){
             val prll = call.receive<Paralelepipedo>()
             if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
             {
@@ -170,7 +200,7 @@ fun Application.configureRouting() {
             call.respond(prllRepository.getVolume(prll))
         }
 
-        post("/prll/diagonal"){
+        get("/prll/diagonal"){
             val prll = call.receive<Paralelepipedo>()
             if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
             {
