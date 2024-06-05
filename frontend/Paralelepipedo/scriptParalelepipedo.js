@@ -21,9 +21,9 @@ async function calcular() {
 
     try {
         // Make the GET request
-        const responseArea = await fetch(`/prll/area?${queryParams}`);
-        const responseVolume = await fetch(`/prll/volume?${queryParams}`);
-        const responseDiagonal = await fetch(`/prll/diagonal?${queryParams}`);
+        const responseArea = await fetch(`localhost:8080/prll/area?${queryParams}`);
+        const responseVolume = await fetch(`localhost:8080/prll/volume?${queryParams}`);
+        const responseDiagonal = await fetch(`localhost:8080/prll/diagonal?${queryParams}`);
 
         // Check if the response is successful
         if (!response.ok) {

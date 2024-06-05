@@ -21,12 +21,12 @@ async function calcular() {
 
     try {
         // Make the GET request
-        const responseArea = await fetch(`/cone/area?${queryParams}`);
-        const responseCircunferencia = await fetch(`/cone/circunferencia?${queryParams}`);
-        const responseVolume = await fetch(`/cone/volume?${queryParams}`);
+        const responseArea = await fetch(`http://localhost:8080/cone/area?${queryParams}`);
+        const responseCircunferencia = await fetch(`http://localhost:8080/cone/circunferencia?${queryParams}`);
+        const responseVolume = await fetch(`http://localhost:8080/cone/volume?${queryParams}`);
 
         // Check if the response is successful
-        if (!response.ok) {
+        if (!responseArea.ok ||!responseCircunferencia.ok||!responseVolume.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || 'Unknown error');
         }
@@ -37,9 +37,9 @@ async function calcular() {
         const dataVolume = await responseVolume.json();
 
         // Display the volume in the resposta paragraph
-        document.getElementById("resposta").innerText = `Área: ${dataArea} <br>
-                                                        Circunferência: ${dataCircunferencia} <br>
-                                                        Volume: ${dataVolume} <br>`;
+        document.getElementById("resposta").innerText = `Área: ${dataArea} 
+                                                        Circunferência: ${dataCircunferencia} 
+                                                        Volume: ${dataVolume}`;
     } catch (error) {
         // Display the error message in the error paragraph
         document.getElementById("error").innerText = `Erro: ${error.message}`;

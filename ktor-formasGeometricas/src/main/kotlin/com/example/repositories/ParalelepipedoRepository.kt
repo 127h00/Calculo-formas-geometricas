@@ -1,7 +1,6 @@
 package com.example.repositories
 import com.example.models.Paralelepipedo
 import kotlin.math.sqrt
-
 class ParalelepipedoRepository {
 
     fun getAreaTotal(prll: Paralelepipedo): Number {
@@ -13,8 +12,7 @@ class ParalelepipedoRepository {
     }
 
     fun getDiagonal(prll: Paralelepipedo): Number {
-        sqrt(number)
-        return sqrt(prll.comprimento**2 + prll.largura**2 + prll.altura**2)
+        return sqrt(Math.pow(prll.comprimento,2.0) + Math.pow (prll.largura,2.0) + Math.pow(prll.altura,2.0))
     }
 }
 
