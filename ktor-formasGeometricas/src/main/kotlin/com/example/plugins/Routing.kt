@@ -26,59 +26,55 @@ fun Application.configureRouting() {
         }
     }
 
-
     routing {
-        val repository = TasksRepository()
+        val cuboRepository = CuboRepository()
 
-        get("/") {
-            call.respondText("Hello World!")
-        }
+        get("/cubo/qual") {
+            val lado = call.request.queryParameters["lado"]?.toDoubleOrNull()
 
-        get("/tasks") {
-            call.respond(repository.tasks)
-        }
-
-        post("/tasks") {
-            val task = call.receive<Task>()
-            repository.save(task)
-            call.respondText("task was created", status = HttpStatusCode.Created)
-        }
-    }
-
-    routing {
-        val cuboRepository:CuboRepository = CuboRepository()
-
-        post("/cubo/qual"){
-            val cub = call.receive<Cubo>()
-            if(cub.lado <=0)
-            {
-                call.respond(error("Medidas negativas ou iguais a 0"))
+            if (lado == null || lado <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
             }
-            call.respond(cuboRepository.ola(cub))
+
+            val cubo = Cubo(lado)
+            call.respond(cuboRepository.ola(cubo))
         }
-        post("/cubo/areatotal"){
-            val cub = call.receive<Cubo>()
-            if(cub.lado <=0)
-            {
-                call.respond(error("Medidas negativas ou iguais a 0"))
+
+        get("/cubo/areatotal") {
+            val lado = call.request.queryParameters["lado"]?.toDoubleOrNull()
+
+            if (lado == null || lado <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
             }
-            call.respond(cuboRepository.getAreaTotal(cub))
+
+            val cubo = Cubo(lado)
+            call.respond(cuboRepository.getAreaTotal(cubo))
         }
-        post("/cubo/volume"){
-            val cub = call.receive<Cubo>()
-            if(cub.lado <=0)
-            {
-                call.respond(error("Medidas negativas ou iguais a 0"))
+
+        get("/cubo/volume") {
+            val lado = call.request.queryParameters["lado"]?.toDoubleOrNull()
+
+            if (lado == null || lado <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
             }
-            call.respond(cuboRepository.getVolume(cub))
+
+            val cubo = Cubo(lado)
+            call.respond(cuboRepository.getVolume(cubo))
         }
-        post("/cubo/perimetro"){
-            val cub = call.receive<Cubo>()
-            if(cub.lado <=0)
-            {
-                call.respond(error("Medidas negativas ou iguais a 0"))
+
+        get("/cubo/perimetro") {
+            val lado = call.request.queryParameters["lado"]?.toDoubleOrNull()
+
+            if (lado == null || lado <= 0) {
+                call.respond(HttpStatusCode.BadRequest, "Medidas negativas ou iguais a 0")
+                return@get
             }
-            call.respond(cuboRepository.getPerimetro(cub))
+
+            val cubo = Cubo(lado)
+            call.respond(cuboRepository.getPerimetro(cubo))
         }
     }
 
