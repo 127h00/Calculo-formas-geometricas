@@ -183,30 +183,45 @@ fun Application.configureRouting() {
         val prllRepository = ParalelepipedoRepository();
 
         get("/prll/area"){
-            val prll = call.receive<Paralelepipedo>()
-            if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
+            val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+            val largura = call.request.queryParameters["largura"]?.toDoubleOrNull()
+            val comprimento = call.request.queryParameters["comprimento"]?.toDoubleOrNull()
+
+            if(altura == null || largura == null || comprimento == null)
             {
-                call.respond(error("Medidas negativas ou iguais a 0"))
+                call.respond(HttpStatusCode.BadRequest, "Parâmetros inválidos")
+                return@get
             }
+            val prll = Paralelepipedo(altura, largura, comprimento)
             call.respond(prllRepository.getAreaTotal(prll))
         }
 
         get("/prll/volume"){
-            val prll = call.receive<Paralelepipedo>()
-            if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
+            val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+            val largura = call.request.queryParameters["largura"]?.toDoubleOrNull()
+            val comprimento = call.request.queryParameters["comprimento"]?.toDoubleOrNull()
+
+            if(altura == null || largura == null || comprimento == null)
             {
-                call.respond(error("Medidas negativas ou iguais a 0"))
+                call.respond(HttpStatusCode.BadRequest, "Parâmetros inválidos")
+                return@get
             }
+            val prll = Paralelepipedo(altura, largura, comprimento)
             call.respond(prllRepository.getVolume(prll))
         }
 
         get("/prll/diagonal"){
-            val prll = call.receive<Paralelepipedo>()
-            if(prll.altura <=0 || prll.largura <= 0 || prll.comprimento <= 0)
+            val altura = call.request.queryParameters["altura"]?.toDoubleOrNull()
+            val largura = call.request.queryParameters["largura"]?.toDoubleOrNull()
+            val comprimento = call.request.queryParameters["comprimento"]?.toDoubleOrNull()
+
+            if(altura == null || largura == null || comprimento == null)
             {
-                call.respond(error("Medidas negativas ou iguais a 0"))
+                call.respond(HttpStatusCode.BadRequest, "Parâmetros inválidos")
+                return@get
             }
+            val prll = Paralelepipedo(altura, largura, comprimento)
             call.respond(prllRepository.getDiagonal(prll))
-        }
+    }
     }
 }

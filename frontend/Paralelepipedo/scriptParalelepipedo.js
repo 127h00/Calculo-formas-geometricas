@@ -21,24 +21,24 @@ async function calcular() {
 
     try {
         // Make the GET request
-        const responseArea = await fetch(`localhost:8080/prll/area?${queryParams}`);
-        const responseVolume = await fetch(`localhost:8080/prll/volume?${queryParams}`);
-        const responseDiagonal = await fetch(`localhost:8080/prll/diagonal?${queryParams}`);
+        const responseArea = await fetch(`http://localhost:8080/prll/area?${queryParams}`);
+        const responseVolume = await fetch(`http://localhost:8080/prll/volume?${queryParams}`);
+        const responseDiagonal = await fetch(`http://localhost:8080/prll/diagonal?${queryParams}`);
 
         // Check if the response is successful
-        if (!response.ok) {
+        if (!responseArea.ok ||!responseVolume.ok||!responseDiagonal.ok) {
             const errorData = await response.json();
             throw new Error(errorData.message || 'Unknown error');
         }
 
         // Get the JSON response
         const dataArea = await responseArea.json();
-        const dataCircunferencia = await responseCircunferencia.json();
+        const dataVolume = await responseVolume.json();
         const dataDiagonal = await responseDiagonal.json();
 
         // Display the volume in the resposta paragraph
         document.getElementById("resposta").innerText = `Área: ${dataArea} <br>
-                                                        Circunferência: ${dataCircunferencia} <br>
+                                                        Circunferência: ${dataVolume} <br>
                                                         Diagonal: ${dataDiagonal} <br>`;
     } catch (error) {
         // Display the error message in the error paragraph
