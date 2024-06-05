@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66e710c6-1bce-42b8-b98d-6b0f78195d01" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ktor-formasGeometricas/src/main/kotlin/com/example/plugins/Routing.kt" beforeDir="false" afterPath="$PROJECT_DIR$/ktor-formasGeometricas/src/main/kotlin/com/example/plugins/Routing.kt" afterDir="false" />
-    </list>
+    <list default="true" id="66e710c6-1bce-42b8-b98d-6b0f78195d01" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

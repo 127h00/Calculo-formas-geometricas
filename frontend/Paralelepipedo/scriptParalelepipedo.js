@@ -37,9 +37,9 @@ async function calcular() {
         const dataDiagonal = await responseDiagonal.json();
 
         // Display the volume in the resposta paragraph
-        document.getElementById("resposta").innerText = `Área: ${dataArea} <br>
-                                                        Circunferência: ${dataVolume} <br>
-                                                        Diagonal: ${dataDiagonal} <br>`;
+        document.getElementById("resposta").innerText = `Área: ${dataArea}
+                                                        Circunferência: ${dataVolume}
+                                                        Diagonal: ${dataDiagonal}`;
     } catch (error) {
         // Display the error message in the error paragraph
         document.getElementById("error").innerText = `Erro: ${error.message}`;
